@@ -28,5 +28,5 @@ app.use((err, req, res, next)=>{
 
 //listening
 app.listen(process.env.PORT || 8000, ()=>{
-	console.log('listening on https://localhost:8000')
+	console.log('listening on http://localhost:8000')
 })
