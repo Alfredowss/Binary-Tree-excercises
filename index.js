@@ -1,78 +1,32 @@
+const path = require('path')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const express = require('express');
 const app = express();
-const router = express.Router();
+const {router} = require('./routes/index')
+
+//configs
+require('dotenv').config()
+app.set('view engine', 'pug');
+
+//statics
+app.use('/public', express.static(path.join(__dirname, 'public')))
 
 //middlewars
 app.use(bodyParser.json());
+app.use(cors());
 
 
-//Define routes
-router.post('/v1/b-trees/height', (req, res)=>{
+//routes
+app.use(router);
 
-	const tree = req.body;
-	if(!tree){
-		res.json({error:'No - data'})
-	}
-	
+//errors
+app.use((err, req, res, next)=>{
+	console.log(err)
+	res.json({ error: 'internal error' })
+});
 
-	let binaryTreeHelper = [];
-	let depht = 0;
-
-	tree.forEach(el=>{
-		if(el != 1){
-
-			if((binaryTreeHelper.length!=2 && tree[tree.length - 1] == el)){
-				depht++;	
-			}
-
-
-			if(binaryTreeHelper.length == 2){
-				binaryTreeHelper = [];
-				depht++;
-			}else{
-				binaryTreeHelper.push(el)
-			}
-		}	
-	})
-
-	res.json({error: null})
+//listening
+app.listen(process.env.PORT || 8000, ()=>{
+	console.log('listening on https://localhost:8000')
 })
-
-
-
-
-//Function test, the funcion only works if the 
-
-
-/*	function height(){
-		const tree = [1,2,3,4,5,6,7,8];
-	
-		let binaryTreeHelper = [];
-		let depht = 0;
-
-		tree.forEach(el=>{
-			if(el!=1){
-
-				if((binaryTreeHelper.length!=2 && tree[tree.length - 1] == el)){
-					depht++;	
-				}
-
-				if(binaryTreeHelper.length == 2){
-					binaryTreeHelper = [];
-					depht++;
-				}else{
-					binaryTreeHelper.push(el)
-				}
-			}	
-		})
-		console.log(depht)
-	}
-
-
-
-
-height();
-
-*/
-

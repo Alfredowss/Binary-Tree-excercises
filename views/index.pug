@@ -1,0 +1,52 @@
+html
+	head
+		title= title
+		link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous")
+	
+	body(class="bg-light")
+		nav(class="navbar navbar-light bg-dark")
+			div(class="container-fluid")
+				a(class="navbar-brand text-light fs-4" href="#") Technical test
+		div(class="container-fluid pt-3")
+			h4(class="text-center fw-bold") TEST THE API 
+		
+		div(class="container-fluid w-75 mt-3")
+			div(class="card text-center h-75")
+				div(class="card-header")
+					ul(class="nav nav-tabs card-header-tabs")
+						li(class="nav-item")
+							a(class="nav-link active" aria-current="true" href="#") ALFREDO G.G 
+				div(class="card-body" id="container")
+					h5(class="card-title") Binary tree exercises 
+						p(class="card-text mt-5 mx-auto fw-normal text-start w-75") Select the API, and fill the data. The tree input is the first input, and the format is '1 2 4 5' (numbers separated from one space) for more information check the URL bellow. 
+							
+					div(class="input-group mt-5 mb-3 w-75 d-inline-block")
+						label(class="input-group-text" for="inputGroupSelect01") url  
+							select(class="form-select" id="endPoint")
+								option(selected value="0") POST /v1/b-trees/height 
+								option(value="1") POST /v1/b-trees/neighbors 
+								option(value="2") POST /v1/b-trees/bfs 
+					
+
+					div(class="input-group w-75 mx-auto input-group-sm mb-3")
+						span(class="input-group-text" id="inputGroup-sizing-sm") Tree 
+						input(type="text" class="form-control" id="tree" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm")
+
+
+					div(class="input-group w-75 mx-auto input-group-sm mb-3 d-none" id="node-container")
+						span(class="input-group-text" id="inputGroup-sizing-sm") Node 
+						input(type="text" class="form-control" id="node" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm")
+
+
+
+
+					button(type="button" id="button" class="btn btn-success d-block w-75 mx-auto mt-4") Success
+					div(class="alert alert-danger mt-3 w-75 mx-auto d-none" role="alert" id="error") Format error 
+
+			div(id="responseContainer" class="card d-none w-75 mx-auto mt-3 text-white bg-secondary mb-3")
+				div(class="card-header text-center") Response 
+				div(class="card-body")
+					h5(class="card-title") The server says: 
+					p(class="card-text" id="responseVisualization")
+
+		script(src="/public/index.js")
